@@ -27,21 +27,30 @@ const Singup = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    axios
-      .post(`${server}/user/create-user`, { name, email, password, avatar })
-      .then((res) => {
-        toast.success(res.data.message);
-        setName("");
-        setEmail("");
-        setPassword("");
-        setAvatar();
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message);
-      });
-  };
+  try {
+    const response = await axios.post(`${server}/user/create-user`, { name, email, password, avatar });
+    toast.success(response.data.message);
+    setName("");
+    setEmail("");
+    setPassword("");
+    setAvatar(null);
+  } catch (error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      toast.error(error.response.data.message);
+    } else if (error.request) {
+      // The request was made but no response was received
+      toast.error('No response received from the server');
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      toast.error('An error occurred while processing the request');
+    }
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
