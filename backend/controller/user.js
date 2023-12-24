@@ -35,7 +35,7 @@ router.post("/create-user", async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://multi-vendor-ecommerce-app-ten.vercel.app/${activationToken}`;
+    const activationUrl = `https://multi-vendor-ecommerce-app-ten.vercel.app/activation/${activationToken}`;
 
 
     try {
