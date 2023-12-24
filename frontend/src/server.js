@@ -1,6 +1,6 @@
-export const server = "https://eshop-tutorial.vercel.app/api/v2";
+export const server = "https://multi-vendor-ecommerce-ochre.vercel.app/api/v2";
 
-export const backend_url="https://eshop-tutorial.vercel.app/";
+export const backend_url="https://multi-vendor-ecommerce-ochre.vercel.app/";
 
 
 
